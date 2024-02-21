@@ -1,20 +1,21 @@
 const { celebrate ,Joi} = require("celebrate");
 
-exports.signup_validation=celebrate({
+exports.signup_validation= () => celebrate({
     body:Joi.object({
         name:Joi.string().min(3).max(20).required(),
         password:Joi.string().min(8).max(18).required(),
         confirm_password:Joi.string().valid(Joi.ref("password")).required(),
         state:Joi.string().optional(),
         number:Joi.number().optional(),
+        mail: Joi.string()
     })
 });
 
 
 
-exports.login_validation=celebrate({
+exports.login_validation=()=>celebrate({
     body:Joi.object({
-        name:Joi.string().min(3).max(20).required(),
+        mail:Joi.string().min(3).required(),
         password:Joi.string().min(8).max(20).required(),
     })
 });
